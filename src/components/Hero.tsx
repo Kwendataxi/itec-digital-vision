@@ -1,81 +1,120 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Play, Sparkles } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { Button } from "./ui/button";
 import heroImage from "@/assets/hero-itec.jpg";
-import FloatingParticles from "./FloatingParticles";
 
 const Hero = () => {
-  const title = "Expertise – Innovation – Performance";
+  const words = ["Expertise", "–", "Innovation", "–", "Performance"];
   
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center scale-105"
+        <motion.div 
+          className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-primary-light/85" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(var(--primary-light)/0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,hsl(var(--primary)/0.3),transparent_50%)]" />
+        {/* Premium gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/85 to-primary-light/80" />
+        
+        {/* Mesh gradient effects */}
+        <div className="absolute inset-0 mesh-gradient opacity-60" />
+        
+        {/* Aurora effect */}
+        <div className="absolute inset-0 aurora" />
+        
+        {/* Subtle grid pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }}
+        />
       </div>
 
-      {/* Floating Particles */}
-      <FloatingParticles />
-
-      {/* Top Badge */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="absolute top-28 left-1/2 transform -translate-x-1/2 z-10 hidden md:block"
-      >
-        <div className="glass px-6 py-3 rounded-full flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-white" />
-          <span className="text-white font-semibold text-sm tracking-wide">ITEC Excellence</span>
-        </div>
-      </motion.div>
+      {/* Floating Shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 left-[10%] w-64 h-64 rounded-full bg-white/5 blur-3xl"
+          animate={{ 
+            y: [0, -30, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-[15%] w-96 h-96 rounded-full bg-primary-light/10 blur-3xl"
+          animate={{ 
+            y: [0, 20, 0],
+            x: [0, -20, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="absolute inset-0 rounded-full border border-white/5" />
+          <div className="absolute inset-8 rounded-full border border-white/5" />
+          <div className="absolute inset-16 rounded-full border border-white/5" />
+        </motion.div>
+      </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-20 pb-32 md:pb-20">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Animated Title */}
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-6 leading-tight soft-glow">
-              {title.split("").map((char, index) => (
+            <div className="inline-flex items-center gap-2 glass px-6 py-3 rounded-full">
+              <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+              <span className="text-white/90 font-medium text-sm tracking-wide">ITEC Excellence</span>
+            </div>
+          </motion.div>
+
+          {/* Animated Title - Word by Word */}
+          <div className="mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight soft-glow text-balance">
+              {words.map((word, index) => (
                 <motion.span
                   key={index}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.5,
-                    delay: 0.3 + index * 0.03,
+                    duration: 0.6,
+                    delay: 0.4 + index * 0.15,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="inline-block"
+                  className="inline-block mr-2 sm:mr-4"
                 >
-                  {char === " " ? "\u00A0" : char}
+                  {word}
                 </motion.span>
               ))}
             </h1>
-          </motion.div>
+          </div>
 
           {/* Subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
-            className="mb-10"
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="mb-12"
           >
-            <div className="glass-strong mx-auto max-w-3xl p-6 rounded-2xl">
-              <p className="text-lg md:text-xl text-white/95 leading-relaxed">
+            <div className="glass-strong mx-auto max-w-3xl p-6 sm:p-8 rounded-2xl sm:rounded-3xl">
+              <p className="text-base sm:text-lg md:text-xl text-white/95 leading-relaxed">
                 ITEC accompagne entreprises et institutions à travers des solutions
-                fiables en Ressources Humaines, Ingénierie, Électricité, Génie Civil
-                et Nouvelles Technologies.
+                fiables en <span className="font-semibold">Ressources Humaines</span>, <span className="font-semibold">Ingénierie</span>, <span className="font-semibold">Électricité</span>, <span className="font-semibold">Génie Civil</span>
+                {" "}et <span className="font-semibold">Nouvelles Technologies</span>.
               </p>
             </div>
           </motion.div>
@@ -84,37 +123,31 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.8 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
               <Button
                 size="lg"
-                className="bg-white text-primary hover:bg-white/95 font-bold text-lg px-10 py-7 shadow-elegant group relative overflow-hidden rounded-2xl"
+                className="bg-white text-primary hover:bg-white/95 font-bold text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 shadow-elegant group relative overflow-hidden rounded-2xl w-full sm:w-auto"
               >
                 <span className="relative z-10 flex items-center">
                   Nos Services
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-white to-gray-100"
-                  initial={{ x: "100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
               </Button>
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
               <Button
                 size="lg"
-                className="glass-strong border-2 border-white/30 text-white hover:bg-white/20 font-bold text-lg px-10 py-7 backdrop-blur-md rounded-2xl group"
+                className="glass-strong border border-white/20 text-white hover:bg-white/15 font-bold text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-2xl group w-full sm:w-auto"
               >
                 <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                 Découvrir ITEC
@@ -124,23 +157,23 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator - Hidden on small screens */}
+      {/* Scroll Indicator - Hidden on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2.2 }}
+        transition={{ duration: 1, delay: 2 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 hidden md:flex"
       >
-        <div className="flex flex-col items-center gap-2 text-white/90">
-          <span className="text-sm font-medium tracking-wide">Défiler</span>
+        <div className="flex flex-col items-center gap-2 text-white/80">
+          <span className="text-xs font-medium tracking-widest uppercase">Défiler</span>
           <motion.div
-            animate={{ y: [0, 10, 0] }}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-6 h-10 rounded-full border-2 border-white/50 flex items-start justify-center p-2"
+            className="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-2"
           >
             <motion.div 
-              className="w-1.5 h-3 bg-white rounded-full"
-              animate={{ opacity: [1, 0.3, 1] }}
+              className="w-1 h-2 bg-white/80 rounded-full"
+              animate={{ opacity: [1, 0.4, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
           </motion.div>
