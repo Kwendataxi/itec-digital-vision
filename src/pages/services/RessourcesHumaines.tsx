@@ -25,6 +25,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import rhHeroImg from "@/assets/itec-bureau-professionnel.jpg";
 
 const RessourcesHumaines = () => {
   const heroRef = useRef(null);
@@ -82,11 +83,16 @@ const RessourcesHumaines = () => {
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-primary"
+          className="absolute inset-0"
           style={{ y: backgroundY }}
-        />
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${rhHeroImg})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-500/80 to-primary/85" />
+        </motion.div>
         <div className="absolute inset-0 mesh-gradient opacity-40" />
-        <div className="absolute inset-0 aurora opacity-30" />
         
         <div className="container mx-auto px-4 lg:px-8 relative z-10 py-20">
           {/* Breadcrumb */}

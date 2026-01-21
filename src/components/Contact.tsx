@@ -6,6 +6,7 @@ import { Textarea } from "./ui/textarea";
 import { Card, CardContent } from "./ui/card";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import accueilImg from "@/assets/itec-accueil-equipe.jpg";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -235,22 +236,14 @@ const Contact = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Card className="shadow-card overflow-hidden border-0">
-                <div className="h-64 relative gradient-primary">
-                  {/* Abstract geometric design */}
-                  <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute top-1/4 left-1/4 w-32 h-32 border border-white/20 rounded-full" />
-                    <div className="absolute top-1/3 right-1/4 w-24 h-24 border border-white/15 rounded-full" />
-                    <div className="absolute bottom-1/4 left-1/3 w-40 h-40 border border-white/10 rounded-full" />
-                    <motion.div
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                        <MapPin className="w-8 h-8 text-white" />
-                      </div>
-                    </motion.div>
-                  </div>
+                <div className="h-64 relative">
+                  {/* Team photo with overlay */}
+                  <img 
+                    src={accueilImg} 
+                    alt="Équipe ITEC à l'accueil" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 glass rounded-xl p-4">
                     <p className="text-white font-medium text-sm">ITEC - Kinshasa & Lubumbashi, RDC</p>
                   </div>
