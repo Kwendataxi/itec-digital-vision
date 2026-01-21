@@ -294,11 +294,10 @@ const GenieCivil = () => {
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <Button 
                   size="lg" 
-                  variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 font-bold px-8 py-6 rounded-xl group"
+                  className="bg-transparent border-2 border-white/50 text-white hover:bg-white/10 font-bold px-8 py-6 rounded-xl group"
                   asChild
                 >
-                  <a href="tel:+243XXXXXXXXX">
+                  <a href="tel:+243858040400">
                     <Phone className="mr-2 w-5 h-5" />
                     Appeler maintenant
                   </a>
