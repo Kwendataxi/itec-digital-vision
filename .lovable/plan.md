@@ -1,118 +1,139 @@
 
 
-# Plan - Agrandissement du Logo + Nettoyage des Mentions "5+ ans"
+# Plan - Integration Optimale des Images ITEC
 
-## 1. Agrandissement du Logo (Navbar)
+## Analyse des Images Fournies
 
-### Modifier `src/components/Navbar.tsx`
+| Image | Contenu | Usage Optimal |
+|-------|---------|---------------|
+| `IMG-20251202-WA0003.jpg` | Technicien ITEC avec casque devant bulldozer | Page Genie Civil (Hero) |
+| `IMG-20251202-WA0001.jpg` | Equipe en reunion sur chantier | Section About (image equipe) |
+| `IMG-20251202-WA0004.jpg` | Bulldozer SD22 ITEC | Section Services (Genie Civil) |
+| `IMG-20251202-WA0000.jpg` | Ouvrier supervisant construction | Page Genie Civil (section prestations) |
+| `IMG-20251202-WA0022.jpg` | Directeur au bureau | Section WhyChoose ou Contact |
+| `IMG-20251202-WA0024.jpg` | Professionnel dans couloir bureaux | Page RH (Hero) |
+| `IMG-20251202-WA0025.jpg` | Deux professionnels devant enseigne ITEC | Section About ou Footer |
+| `IMG-20251202-WA0018.jpg` | Deux employees avec banner ITEC | Page RH (section prestations) |
 
-Augmenter significativement la taille du logo :
+---
 
-| Etat | Taille actuelle | Nouvelle taille |
-|------|-----------------|-----------------|
-| Normal (haut de page) | `h-14 md:h-16 lg:h-20` | **`h-16 md:h-20 lg:h-24`** |
-| Scrolled (defilé) | `h-12 md:h-14` | **`h-14 md:h-16`** |
-| Mobile menu | `h-20 md:h-24` | **`h-24 md:h-28`** |
+## 1. Copier les Images dans le Projet
 
-**Ligne 54-56** - Changer :
-```tsx
-// AVANT
-isScrolled ? "h-12 md:h-14" : "h-14 md:h-16 lg:h-20"
+Copier toutes les images dans `src/assets/` avec des noms descriptifs :
 
-// APRES
-isScrolled ? "h-14 md:h-16" : "h-16 md:h-20 lg:h-24"
-```
-
-**Ligne 155** - Mobile menu logo :
-```tsx
-// AVANT
-className="h-20 md:h-24 mb-8 object-contain drop-shadow-lg"
-
-// APRES
-className="h-24 md:h-28 mb-8 object-contain drop-shadow-lg"
+```text
+user-uploads://IMG-20251202-WA0003.jpg -> src/assets/itec-technicien-chantier.jpg
+user-uploads://IMG-20251202-WA0001.jpg -> src/assets/itec-equipe-terrain.jpg
+user-uploads://IMG-20251202-WA0004.jpg -> src/assets/itec-bulldozer.jpg
+user-uploads://IMG-20251202-WA0000.jpg -> src/assets/itec-supervision-construction.jpg
+user-uploads://IMG-20251202-WA0022.jpg -> src/assets/itec-directeur.jpg
+user-uploads://IMG-20251202-WA0024.jpg -> src/assets/itec-bureau-professionnel.jpg
+user-uploads://IMG-20251202-WA0025.jpg -> src/assets/itec-accueil-equipe.jpg
+user-uploads://IMG-20251202-WA0018.jpg -> src/assets/itec-equipe-rh.jpg
 ```
 
 ---
 
-## 2. Supprimer le Badge "5+ ans" dans le Hero
+## 2. Section About - Image Equipe
 
-### Modifier `src/components/Hero.tsx`
+### Modifier `src/components/About.tsx`
 
-**Supprimer les lignes 86-97** - Le bloc du badge :
+Remplacer `team-itec.jpg` par `itec-equipe-terrain.jpg` (equipe en reunion sur chantier) :
+
 ```tsx
-{/* Badge */}
-<motion.div
-  initial={{ opacity: 0, y: -20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, delay: 0.2 }}
-  className="mb-8"
->
-  <div className="inline-flex items-center gap-2 bg-orange/20 backdrop-blur-sm border border-orange/30 px-6 py-3 rounded-full">
-    <div className="w-2 h-2 rounded-full bg-orange animate-pulse" />
-    <span className="text-white font-semibold text-sm tracking-wide">5+ ans d'excellence</span>
-  </div>
-</motion.div>
+import teamImage from "@/assets/itec-equipe-terrain.jpg";
 ```
 
-Ce badge sera completement supprime, laissant le titre "Expertise - Innovation - Performance" comme element principal.
+Cette image montre une vraie equipe ITEC en action, plus authentique.
 
 ---
 
-## 3. Nettoyer les Mentions Repetitives de "5+ ans"
+## 3. Section Services - Images par Domaine
 
-Les mentions de "5+ ans" apparaissent dans 4 endroits. Pour garder le site propre, nous allons :
+### Modifier `src/components/Services.tsx`
 
-### 3.1 Modifier `src/components/About.tsx` (ligne 157-158)
+Remplacer les images generiques par les vraies photos ITEC :
 
-Remplacer par un message plus general :
+| Service | Image Actuelle | Nouvelle Image |
+|---------|----------------|----------------|
+| Genie Civil | `construction.jpg` | `itec-bulldozer.jpg` |
+| Technologies | `technology.jpg` | Garder (pas de photo techno disponible) |
+| Electricite | `electrical.jpg` | Garder (pas de photo elec disponible) |
+
+Ajouter aussi une image pour RH (actuellement sans image) :
+
 ```tsx
-// AVANT
-<h4 className="font-semibold text-foreground mb-1">5+ ans d'expertise</h4>
-
-// APRES
-<h4 className="font-semibold text-foreground mb-1">Expertise reconnue</h4>
+// Ajouter dans le service RH
+image: rhTeamImg,  // itec-equipe-rh.jpg
 ```
 
-### 3.2 Modifier `src/components/WhyChoose.tsx` (ligne 45)
+---
 
-Changer le titre de la raison :
+## 4. Page Genie Civil - Hero avec Image Authentique
+
+### Modifier `src/pages/services/GenieCivil.tsx`
+
+Remplacer l'image hero par le technicien sur chantier :
+
 ```tsx
-// AVANT
-title: "5+ ans d'expérience"
-
-// APRES
-title: "Expérience confirmée"
+import heroImage from "@/assets/itec-technicien-chantier.jpg";
 ```
 
-### 3.3 Modifier `src/pages/DemandeDevis.tsx` (ligne 123)
+Cette image avec l'employe ITEC devant le bulldozer est parfaite pour cette page.
 
-Simplifier la description :
+---
+
+## 5. Page RH - Images de l'Equipe Bureau
+
+### Modifier `src/pages/services/RessourcesHumaines.tsx`
+
+Ajouter une image hero avec le professionnel dans le bureau :
+
 ```tsx
-// AVANT
-description: "5+ ans d'expérience terrain"
-
-// APRES
-description: "Expertise terrain éprouvée"
+import heroImage from "@/assets/itec-bureau-professionnel.jpg";
 ```
+
+Ajouter aussi une section galerie ou image secondaire avec `itec-equipe-rh.jpg`.
+
+---
+
+## 6. Section WhyChoose - Image Directeur
+
+### Modifier `src/components/WhyChoose.tsx`
+
+Ajouter une image du directeur au travail pour renforcer la credibilite :
+
+- Ajouter une colonne avec l'image `itec-directeur.jpg`
+- Positionner a cote des statistiques
+
+---
+
+## 7. Section Contact ou Footer - Image Accueil
+
+### Option : Modifier `src/components/Contact.tsx`
+
+Utiliser `itec-accueil-equipe.jpg` (deux personnes devant enseigne lumineuse) pour montrer l'accueil professionnel.
 
 ---
 
 ## Resume des Modifications
 
-| Fichier | Action |
-|---------|--------|
-| `src/components/Navbar.tsx` | Agrandir le logo (h-16 a h-24 normal, h-14 a h-16 scrolled) |
-| `src/components/Hero.tsx` | Supprimer le badge "5+ ans d'excellence" |
-| `src/components/About.tsx` | Remplacer "5+ ans d'expertise" par "Expertise reconnue" |
-| `src/components/WhyChoose.tsx` | Remplacer "5+ ans d'expérience" par "Expérience confirmée" |
-| `src/pages/DemandeDevis.tsx` | Remplacer "5+ ans d'expérience terrain" par "Expertise terrain éprouvée" |
+| Fichier | Image Utilisee | Contexte |
+|---------|----------------|----------|
+| `src/components/About.tsx` | `itec-equipe-terrain.jpg` | Section A Propos - equipe |
+| `src/components/Services.tsx` | `itec-bulldozer.jpg` | Carte Genie Civil |
+| `src/components/Services.tsx` | `itec-equipe-rh.jpg` | Carte RH (nouvelle image) |
+| `src/pages/services/GenieCivil.tsx` | `itec-technicien-chantier.jpg` | Hero background |
+| `src/pages/services/RessourcesHumaines.tsx` | `itec-bureau-professionnel.jpg` | Hero background |
+| `src/components/WhyChoose.tsx` | `itec-directeur.jpg` | Section credibilite |
+| `src/components/Contact.tsx` | `itec-accueil-equipe.jpg` | Section contact |
 
 ---
 
 ## Resultat Attendu
 
-- Logo plus grand et plus visible dans le header (proportions elegantes)
-- Hero propre sans badge redondant
-- Mentions de "5+ ans" eliminees pour eviter la repetition
-- Site plus epure et professionnel
+- Images authentiques ITEC sur toutes les sections cles du site
+- Meilleure credibilite avec de vraies photos d'equipe
+- Coherence visuelle avec l'identite de marque ITEC
+- Remplacement des images stock par du contenu reel
 
