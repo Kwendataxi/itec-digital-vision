@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import technologyImg from "@/assets/technology.jpg";
 import {
   Breadcrumb,
@@ -311,6 +312,7 @@ const Technologies = () => {
       </section>
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

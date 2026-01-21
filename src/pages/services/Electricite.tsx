@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import electricalImg from "@/assets/electrical.jpg";
 import {
   Breadcrumb,
@@ -309,6 +310,7 @@ const Electricite = () => {
       </section>
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
