@@ -154,7 +154,7 @@ const About = () => {
                   <CheckCircle2 className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">5+ ans d'expertise</h4>
+                  <h4 className="font-semibold text-foreground mb-1">Expertise reconnue</h4>
                   <p className="text-sm text-muted-foreground">
                     Une expérience solide dans tous nos domaines d'intervention
                   </p>
