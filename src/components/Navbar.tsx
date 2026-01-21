@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
+import { ThemeToggle } from "./ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
@@ -77,11 +78,12 @@ const Navbar = () => {
                   <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-3/4 transition-all duration-300" />
                 </motion.a>
               ))}
+              <ThemeToggle className={isScrolled ? "" : "text-white hover:bg-white/10"} />
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button className="ml-4 gradient-primary text-primary-foreground font-bold shadow-elegant hover:shadow-xl transition-all rounded-xl px-6 relative overflow-hidden group">
+                <Button className="ml-2 gradient-primary text-primary-foreground font-semibold shadow-elegant hover:shadow-xl transition-all rounded-xl px-6 relative overflow-hidden group">
                   <span className="relative z-10 flex items-center gap-2">
                     <Sparkles className="w-4 h-4" />
                     Contactez-nous
@@ -164,9 +166,10 @@ const Navbar = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="pt-4"
+                  className="pt-4 flex flex-col gap-4"
                 >
-                  <Button className="w-full bg-white text-primary hover:bg-white/95 font-bold py-6 text-lg rounded-2xl shadow-xl">
+                  <ThemeToggle className="self-center bg-white/10 hover:bg-white/20" />
+                  <Button className="w-full bg-white text-primary hover:bg-white/95 font-semibold py-6 text-lg rounded-2xl shadow-xl">
                     <Sparkles className="w-5 h-5 mr-2" />
                     Contactez-nous
                   </Button>
