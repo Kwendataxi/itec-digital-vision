@@ -193,7 +193,7 @@ const Services = () => {
                     transition={{ delay: 0.3 }}
                   >
                     <Link 
-                      to={`/services/${service.slug}`}
+                      to={`/${service.slug}`}
                       className="text-primary font-semibold text-sm flex items-center gap-2 group/btn hover:gap-3 transition-all"
                     >
                       En savoir plus

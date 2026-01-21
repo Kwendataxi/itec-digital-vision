@@ -45,10 +45,10 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/kwenda" element={<Kwenda />} />
               <Route path="/demande-devis" element={<DemandeDevis />} />
-              <Route path="/services/rh" element={<RessourcesHumaines />} />
-              <Route path="/services/genie-civil" element={<GenieCivil />} />
-              <Route path="/services/technologies" element={<Technologies />} />
-              <Route path="/services/electricite" element={<Electricite />} />
+              <Route path="/rh" element={<RessourcesHumaines />} />
+              <Route path="/genie-civil" element={<GenieCivil />} />
+              <Route path="/technologies" element={<Technologies />} />
+              <Route path="/electricite" element={<Electricite />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
