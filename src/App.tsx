@@ -12,6 +12,7 @@ import DemandeDevis from "./pages/DemandeDevis";
 import NotFound from "./pages/NotFound";
 import { RessourcesHumaines, GenieCivil, Technologies, Electricite } from "./pages/services";
 import SplashScreen from "./components/SplashScreen";
+import ScrollRestoration from "./components/ScrollRestoration";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => {
             {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
           </AnimatePresence>
           <BrowserRouter>
+            <ScrollRestoration />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/kwenda" element={<Kwenda />} />
