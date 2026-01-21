@@ -172,7 +172,7 @@ const Kwenda = () => {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Actif depuis</p>
-                      <p className="font-semibold text-foreground">2023</p>
+                      <p className="font-semibold text-foreground">2026</p>
                     </div>
                   </div>
                 </motion.div>
