@@ -90,9 +90,9 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <div className="inline-flex items-center gap-2 glass px-6 py-3 rounded-full">
-              <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-              <span className="text-white/90 font-medium text-sm tracking-wide">ITEC Excellence</span>
+            <div className="inline-flex items-center gap-2 bg-orange/20 backdrop-blur-sm border border-orange/30 px-6 py-3 rounded-full">
+              <div className="w-2 h-2 rounded-full bg-orange animate-pulse" />
+              <span className="text-white font-semibold text-sm tracking-wide">5+ ans d'excellence</span>
             </div>
           </motion.div>
 
@@ -161,7 +161,7 @@ const Hero = () => {
             >
               <Button
                 size="lg"
-                className="glass-strong border border-white/20 text-white hover:bg-white/15 font-bold text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-2xl group w-full sm:w-auto"
+                className="bg-orange hover:bg-orange-light text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-2xl group w-full sm:w-auto shadow-lg"
               >
                 <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                 Découvrir ITEC

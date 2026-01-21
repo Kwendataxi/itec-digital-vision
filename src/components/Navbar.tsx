@@ -4,6 +4,7 @@ import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
+import logoItec from "@/assets/logo-itec.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,23 +43,19 @@ const Navbar = () => {
         <nav className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3 group relative">
+            <Link to="/" className="flex items-center group relative">
               <motion.div 
-                className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center shadow-lg relative overflow-hidden"
-                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <span className="text-primary-foreground font-black text-2xl relative z-10">I</span>
-                <motion.div
-                  className="absolute inset-0 bg-white/20"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.5 }}
+                <img 
+                  src={logoItec} 
+                  alt="ITEC Logo" 
+                  className={`transition-all duration-300 object-contain ${
+                    isScrolled ? "h-10 md:h-12" : "h-12 md:h-14"
+                  }`}
                 />
               </motion.div>
-              <span className={`text-2xl font-black transition-colors ${isScrolled ? "text-foreground" : "text-white"}`}>
-                ITEC
-              </span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -84,7 +81,7 @@ const Navbar = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link to="/demande-devis">
-                  <Button className="ml-2 gradient-primary text-primary-foreground font-semibold shadow-elegant hover:shadow-xl transition-all rounded-xl px-6 relative overflow-hidden group">
+                  <Button className="ml-2 bg-orange hover:bg-orange-light text-white font-semibold shadow-elegant hover:shadow-xl transition-all rounded-xl px-6 relative overflow-hidden group">
                     <span className="relative z-10 flex items-center gap-2">
                       <Sparkles className="w-4 h-4" />
                       Demander un devis
@@ -151,6 +148,16 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className="relative h-full flex flex-col items-center justify-center px-6"
             >
+              {/* Logo in mobile menu */}
+              <motion.img
+                src={logoItec}
+                alt="ITEC"
+                className="h-16 mb-8 object-contain"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+              />
+              
               <div className="space-y-6 w-full max-w-sm">
                 {navLinks.map((link, index) => (
                   <motion.a
@@ -172,7 +179,7 @@ const Navbar = () => {
                 >
                   <ThemeToggle className="self-center bg-white/10 hover:bg-white/20" />
                   <Link to="/demande-devis" className="w-full">
-                    <Button className="w-full bg-white text-primary hover:bg-white/95 font-semibold py-6 text-lg rounded-2xl shadow-xl">
+                    <Button className="w-full bg-orange hover:bg-orange-light text-white font-semibold py-6 text-lg rounded-2xl shadow-xl">
                       <Sparkles className="w-5 h-5 mr-2" />
                       Demander un devis
                     </Button>
