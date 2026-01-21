@@ -134,6 +134,11 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="bg-white text-primary hover:bg-white/95 font-bold text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 shadow-elegant group relative overflow-hidden rounded-2xl w-full sm:w-auto"
+                onClick={() => {
+                  document.getElementById('services')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
               >
                 <span className="relative z-10 flex items-center">
                   Nos Services
@@ -149,6 +154,11 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="bg-orange hover:bg-orange-light text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-2xl group w-full sm:w-auto shadow-lg"
+                onClick={() => {
+                  document.getElementById('about')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
               >
                 <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                 Découvrir ITEC
