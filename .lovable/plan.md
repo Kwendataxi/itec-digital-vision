@@ -1,83 +1,150 @@
 
 
-# Plan - Correction des Boutons CTA + Optimisation des Pages Services
+# Plan - Modernisation de la Section Kwenda et Page Projet
 
-## Probleme Identifie
+## Objectif
 
-Le bouton "Appeler maintenant" dans la section CTA n'affiche pas son texte. Cause :
-- La variante `outline` du Button applique `bg-background` (fond blanc en mode clair)
-- La classe `text-white` rend le texte invisible sur fond blanc
+Simplifier et moderniser la presentation du projet Kwenda sur la page d'accueil ET la page dediee, en utilisant l'image publicitaire officielle et en supprimant les elements superflus.
 
-## 1. Corriger les Boutons CTA dans Toutes les Pages Services
+---
 
-### Fichiers a Modifier
+## 1. Modifier la Section Projets (Homepage)
 
-| Fichier | Ligne |
-|---------|-------|
-| `src/pages/services/GenieCivil.tsx` | ~295-305 |
-| `src/pages/services/Electricite.tsx` | ~295-305 |
-| `src/pages/services/Technologies.tsx` | ~296-307 |
-| `src/pages/services/RessourcesHumaines.tsx` | ~296-308 |
+### Fichier : `src/components/Projects.tsx`
 
-### Solution : Remplacer la variante "outline" par un style personnalise
+**Changements a effectuer :**
 
-**Avant (problematique) :**
+| Element | Action |
+|---------|--------|
+| Badge "Projet Majeur" (lignes 76-87) | Supprimer completement |
+| Image mockup | Remplacer par l'image publicitaire `kwenda-campaign.png` |
+| Description | Simplifier avec le slogan officiel |
+
+**Code a supprimer (lignes 75-88) :**
 ```tsx
-<Button 
-  size="lg" 
-  variant="outline"
-  className="border-white/30 text-white hover:bg-white/10 font-bold px-8 py-6 rounded-xl group"
-  asChild
->
-  <a href="tel:+243XXXXXXXXX">
-    <Phone className="mr-2 w-5 h-5" />
-    Appeler maintenant
-  </a>
-</Button>
+<div className="relative">
+  <motion.div 
+    className="absolute top-4 right-4 z-10"
+    ...
+  >
+    <div className="gradient-primary ...">
+      <Star className="w-4 h-4 fill-current" />
+      Projet Majeur
+    </div>
+  </motion.div>
+</div>
 ```
 
-**Apres (corrige) :**
+**Image a modifier (ligne 92) :**
 ```tsx
-<Button 
-  size="lg" 
-  className="bg-transparent border-2 border-white/50 text-white hover:bg-white/10 font-bold px-8 py-6 rounded-xl group"
-  asChild
->
-  <a href="tel:+243858040400">
-    <Phone className="mr-2 w-5 h-5" />
-    Appeler maintenant
-  </a>
-</Button>
+// Avant
+src={kwendaMockup}
+
+// Apres
+src={kwendaCampaign}
 ```
 
-**Changements cles :**
-- Supprimer `variant="outline"` (qui ajoute `bg-background`)
-- Ajouter `bg-transparent` pour un fond transparent
-- Ajouter `border-2 border-white/50` pour une bordure blanche visible
-- Garder `text-white` pour le texte blanc
-- Mettre a jour le numero de telephone : `+243858040400`
+**Description simplifiee :**
+```tsx
+<p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+  Simplifiez vos trajets, profitez de chaque instant. 
+  Plateforme de transport et livraison en RD Congo.
+</p>
+```
 
-## 2. Mettre a Jour les Numeros de Telephone
+---
 
-Remplacer `tel:+243XXXXXXXXX` par le vrai numero ITEC dans toutes les pages :
+## 2. Moderniser la Page Kwenda
+
+### Fichier : `src/pages/Kwenda.tsx`
+
+**Objectifs :**
+- Design plus epure et professionnel
+- Reduire la surcharge visuelle
+- Garder les elements essentiels
+
+### Changements proposes :
+
+| Section | Modification |
+|---------|--------------|
+| Hero | Simplifier les effets de fond, focus sur l'image et le slogan |
+| Badge "Projet Phare" (ligne 105-113) | Supprimer pour plus de legerete |
+| Features (6 cards) | Regrouper en 4 cards maximum ou afficher en grille 2x2 sur mobile |
+| Services Types | Grille 3 colonnes au lieu de 4 (seulement 3 services definis) |
+| Effets d'animation | Reduire les animations flottantes excessives |
+
+### Section Hero simplifiee :
+
+**Supprimer les cercles animes excessifs :**
+```tsx
+// Supprimer ou reduire l'opacite de ces elements (lignes 79-88)
+<motion.div
+  className="absolute top-20 right-10 w-96 h-96 rounded-full bg-primary/10 blur-3xl"
+  animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+  ...
+/>
+```
+
+**Simplifier a un seul effet de fond subtil.**
+
+### Reduire les Features a 4 essentielles :
 
 ```tsx
-<a href="tel:+243858040400">
+const features = [
+  {
+    icon: Smartphone,
+    title: "Application Mobile",
+    description: "Interface intuitive et facile d'utilisation",
+  },
+  {
+    icon: MapPin,
+    title: "Geolocalisation",
+    description: "Suivi de votre course en temps reel",
+  },
+  {
+    icon: DollarSign,
+    title: "Kwenda Pay",
+    description: "Wallet integre pour paiements securises",
+  },
+  {
+    icon: Shield,
+    title: "Securite",
+    description: "Chauffeurs verifies et courses securisees",
+  },
+];
 ```
+
+### Grille Services : 3 colonnes
+
+```tsx
+// Changer de lg:grid-cols-4 a lg:grid-cols-3 (ligne 277)
+<div className="grid md:grid-cols-3 gap-6">
+```
+
+---
+
+## 3. Copier l'Image Publicitaire
+
+L'image `kwenda-campaign.png` est deja dans `src/assets/`. 
+Mettre a jour l'import dans `Projects.tsx` :
+
+```tsx
+import kwendaCampaign from "@/assets/kwenda-campaign.png";
+```
+
+---
 
 ## Resume des Modifications
 
-| Fichier | Modification |
-|---------|--------------|
-| `GenieCivil.tsx` | Corriger bouton "Appeler" + numero |
-| `Electricite.tsx` | Corriger bouton "Appeler" + numero |
-| `Technologies.tsx` | Corriger bouton "Appeler" + numero |
-| `RessourcesHumaines.tsx` | Corriger bouton "Appeler" + numero |
+| Fichier | Modifications |
+|---------|---------------|
+| `Projects.tsx` | Supprimer badge "Projet Majeur", utiliser image publicitaire, simplifier description |
+| `Kwenda.tsx` | Supprimer badge "Projet Phare", reduire les animations de fond, 4 features au lieu de 6, grille services 3 colonnes |
 
 ## Resultat Attendu
 
-- Texte "Appeler maintenant" visible en blanc sur fond transparent
-- Bordure blanche semi-transparente autour du bouton
-- Numero de telephone reel (+243 858 040 400)
-- Effet hover fonctionnel avec fond blanc/10
+- Section Projets : Plus propre avec l'image publicitaire officielle Kwenda
+- Page Kwenda : Design moderne et professionnel sans surcharge
+- Focus sur le contenu essentiel et l'image de marque
+- Meilleure lisibilite et experience utilisateur
 
