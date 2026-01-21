@@ -1,109 +1,95 @@
 
 
-# Plan de Correction - Pages de Services + Logo Optimise
+# Plan - Migration vers la Police Montserrat
 
-## Probleme Identifie
+## Objectif
 
-Les pages de services affichent une erreur 404 car les routes ne correspondent pas :
+Remplacer la police **Inter** par **Montserrat** pour un look plus moderne et dynamique.
 
-| Route definie dans App.tsx | URL attendue par l'utilisateur |
-|---------------------------|-------------------------------|
-| `/services/genie-civil` | `/genie-civil` |
-| `/services/rh` | `/rh` |
-| `/services/technologies` | `/technologies` |
-| `/services/electricite` | `/electricite` |
+### Pourquoi Montserrat ?
+
+| Caracteristique | Inter | Montserrat |
+|-----------------|-------|------------|
+| Style | Neutre, technique | Moderne, geometrique |
+| Personnalite | Sobre, minimaliste | Vivante, elegante |
+| Lisibilite | Excellente | Excellente |
+| Usage ideal | Tech, SaaS | Branding, Corporate |
 
 ---
 
-## 1. Correction du Routage
+## Fichiers a Modifier
 
-### Modifier `src/App.tsx`
+### 1. `index.html` (ligne 13)
 
-Simplifier les routes pour des URLs plus courtes et intuitives :
+**Avant :**
+```html
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+```
 
-```text
-AVANT :
-- /services/rh
-- /services/genie-civil
-- /services/technologies
-- /services/electricite
+**Apres :**
+```html
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+```
 
-APRES :
-- /rh
-- /genie-civil
-- /technologies
-- /electricite
+- Ajout du poids **900** (Black) pour les titres impactants
+- Suppression de Inter
+
+---
+
+### 2. `tailwind.config.ts` (ligne 17)
+
+**Avant :**
+```ts
+fontFamily: {
+  sans: ['Inter', 'system-ui', 'sans-serif'],
+},
+```
+
+**Apres :**
+```ts
+fontFamily: {
+  sans: ['Montserrat', 'system-ui', 'sans-serif'],
+},
 ```
 
 ---
 
-## 2. Mise a Jour des Liens Internes
+### 3. `src/index.css` (ligne 78-79)
 
-### Modifier `src/components/Services.tsx`
+Ajouter des styles specifiques pour optimiser Montserrat :
 
-Les liens "En savoir plus" pointent vers `/services/${slug}`. Il faut les mettre a jour :
+```css
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  letter-spacing: -0.01em;
+}
 
-```tsx
-// AVANT
-<Link to={`/services/${service.slug}`}>
-
-// APRES
-<Link to={`/${service.slug}`}>
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight;
+  letter-spacing: -0.02em;
+}
 ```
 
-### Modifier les Breadcrumbs dans chaque page service
-
-Les pages `RessourcesHumaines.tsx`, `GenieCivil.tsx`, `Technologies.tsx`, `Electricite.tsx` ont des breadcrumbs qui pointent vers `/#services`. Ils resteront fonctionnels.
-
----
-
-## 3. Agrandissement du Logo (Navbar)
-
-### Modifier `src/components/Navbar.tsx`
-
-Agrandir le logo de maniere optimale et elegante :
-
-| Etat | Taille actuelle | Nouvelle taille |
-|------|-----------------|-----------------|
-| Normal (haut de page) | `h-12 md:h-14` | **`h-14 md:h-16 lg:h-18`** |
-| Scrolled (defilé) | `h-10 md:h-12` | **`h-12 md:h-14`** |
-| Mobile menu | `h-16` | **`h-20`** |
-
-Ajouter aussi une legere ombre pour plus d'elegance :
-```tsx
-className="drop-shadow-md"
-```
-
----
-
-## 4. Agrandissement du Logo (Footer)
-
-### Modifier `src/components/Footer.tsx`
-
-Agrandir le logo dans le footer pour une meilleure visibilite :
-
-```text
-AVANT : h-12
-APRES : h-16 md:h-20
-```
+- `letter-spacing` legerement negatif pour un look plus moderne
+- `font-bold` par defaut pour les titres avec Montserrat
 
 ---
 
 ## Resume des Modifications
 
-| Fichier | Action |
-|---------|--------|
-| `src/App.tsx` | Simplifier les routes (retirer `/services/`) |
-| `src/components/Services.tsx` | Mettre a jour les liens vers les nouvelles routes |
-| `src/components/Navbar.tsx` | Agrandir le logo (h-14 a h-18) + ombre elegante |
-| `src/components/Footer.tsx` | Agrandir le logo (h-16 a h-20) |
+| Fichier | Modification |
+|---------|--------------|
+| `index.html` | Remplacer Google Fonts Inter par Montserrat |
+| `tailwind.config.ts` | Changer `font-sans` de Inter a Montserrat |
+| `src/index.css` | Optimiser le letter-spacing pour Montserrat |
 
 ---
 
 ## Resultat Attendu
 
-- Toutes les pages de services seront accessibles aux URLs simplifiees
-- `/genie-civil`, `/rh`, `/technologies`, `/electricite` fonctionneront correctement
-- Logo plus grand et plus visible dans le header et le footer
-- Experience utilisateur fluide et coherente
+- Police **Montserrat** appliquee sur tout le site
+- Titres plus impactants avec le poids 700-900
+- Textes corporels plus vivants et modernes
+- Meilleure harmonie avec le style premium du site ITEC
 
