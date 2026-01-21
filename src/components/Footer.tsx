@@ -47,7 +47,7 @@ const Footer = () => {
               <motion.img
                 src={logoItec}
                 alt="ITEC Logo"
-                className="h-20 md:h-24 lg:h-28 w-auto object-contain brightness-0 invert drop-shadow-lg"
+                className="h-20 md:h-24 lg:h-28 w-auto object-contain drop-shadow-lg"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400 }}
               />
