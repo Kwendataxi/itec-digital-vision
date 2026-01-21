@@ -1,166 +1,83 @@
 
 
-# Plan - Simplification de la Page Kwenda avec Image et Liens
+# Plan - Correction des Boutons CTA + Optimisation des Pages Services
 
-## 1. Copier l'Image Kwenda
+## Probleme Identifie
 
-Copier l'image publicitaire dans le projet :
+Le bouton "Appeler maintenant" dans la section CTA n'affiche pas son texte. Cause :
+- La variante `outline` du Button applique `bg-background` (fond blanc en mode clair)
+- La classe `text-white` rend le texte invisible sur fond blanc
 
-```text
-user-uploads://campaign-client-bl_RrbLq.png -> src/assets/kwenda-campaign.png
-```
+## 1. Corriger les Boutons CTA dans Toutes les Pages Services
 
-## 2. Simplifier la Description dans le Hero
+### Fichiers a Modifier
 
-### Modifier `src/pages/Kwenda.tsx` (lignes 121-128)
+| Fichier | Ligne |
+|---------|-------|
+| `src/pages/services/GenieCivil.tsx` | ~295-305 |
+| `src/pages/services/Electricite.tsx` | ~295-305 |
+| `src/pages/services/Technologies.tsx` | ~296-307 |
+| `src/pages/services/RessourcesHumaines.tsx` | ~296-308 |
 
-Remplacer la description actuelle par le slogan officiel et une description simplifiee :
+### Solution : Remplacer la variante "outline" par un style personnalise
 
-**Avant :**
+**Avant (problematique) :**
 ```tsx
-<h1>Kwenda <span className="text-gradient">Taxi</span></h1>
-<p>Solution digitale complète de mobilité, taxi et livraison
-   déployée en République Démocratique du Congo. ITEC assure la
-   gestion technique et opérationnelle complète du projet.</p>
-```
-
-**Apres :**
-```tsx
-<h1>Kwenda <span className="text-gradient">Taxi</span></h1>
-<p className="text-xl font-medium text-primary mb-2">
-  Simplifiez vos trajets, profitez de chaque instant.
-</p>
-<p>Plateforme de transport et livraison geree par des partenaires 
-   tiers en RD Congo. Trajets a partir de 2500 CDF.</p>
-```
-
-## 3. Ajouter le Hashtag et le Numero de Telephone
-
-### Modifier la section Hero (apres les tags)
-
-Ajouter une ligne avec le numero de telephone (avec diese) et le hashtag :
-
-```tsx
-{/* Contact Info */}
-<div className="flex flex-wrap items-center gap-4 mt-6">
-  <a 
-    href="tel:#0858040400" 
-    className="flex items-center gap-2 glass-card px-4 py-2 rounded-full"
-  >
-    <Phone className="w-4 h-4 text-primary" />
-    <span className="font-medium">#085 80 40 400</span>
+<Button 
+  size="lg" 
+  variant="outline"
+  className="border-white/30 text-white hover:bg-white/10 font-bold px-8 py-6 rounded-xl group"
+  asChild
+>
+  <a href="tel:+243XXXXXXXXX">
+    <Phone className="mr-2 w-5 h-5" />
+    Appeler maintenant
   </a>
-  <span className="text-primary font-semibold">#TrajetSimplifie</span>
-</div>
+</Button>
 ```
 
-## 4. Ajouter les Boutons de Telechargement
-
-### Modifier la section Hero (apres les informations de contact)
-
-Ajouter les boutons App Store et Google Play :
-
+**Apres (corrige) :**
 ```tsx
-{/* Download Buttons */}
-<div className="flex flex-wrap gap-4 mt-6">
-  <a
-    href="https://play.google.com/store/apps/details?id=cd.kwenda.app"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center gap-2 bg-black text-white px-4 py-3 rounded-xl hover:bg-gray-800 transition-colors"
-  >
-    <Play className="w-5 h-5" />
-    <div className="text-left">
-      <div className="text-xs">Telecharger sur</div>
-      <div className="font-semibold">Google Play</div>
-    </div>
+<Button 
+  size="lg" 
+  className="bg-transparent border-2 border-white/50 text-white hover:bg-white/10 font-bold px-8 py-6 rounded-xl group"
+  asChild
+>
+  <a href="tel:+243858040400">
+    <Phone className="mr-2 w-5 h-5" />
+    Appeler maintenant
   </a>
-  
-  <a
-    href="#"
-    className="flex items-center gap-2 bg-black text-white px-4 py-3 rounded-xl hover:bg-gray-800 transition-colors"
-  >
-    <Apple className="w-5 h-5" />
-    <div className="text-left">
-      <div className="text-xs">Telecharger sur</div>
-      <div className="font-semibold">App Store</div>
-    </div>
-  </a>
-</div>
+</Button>
 ```
 
-## 5. Remplacer l'Image par la Campagne Kwenda
+**Changements cles :**
+- Supprimer `variant="outline"` (qui ajoute `bg-background`)
+- Ajouter `bg-transparent` pour un fond transparent
+- Ajouter `border-2 border-white/50` pour une bordure blanche visible
+- Garder `text-white` pour le texte blanc
+- Mettre a jour le numero de telephone : `+243858040400`
 
-### Modifier la section image Hero (lignes 152-162)
+## 2. Mettre a Jour les Numeros de Telephone
 
-Utiliser la nouvelle image de campagne au lieu du mockup generique :
-
-```tsx
-import kwendaCampaign from "@/assets/kwenda-campaign.png";
-
-// Dans le JSX, remplacer kwendaMockup par kwendaCampaign
-<motion.img
-  src={kwendaCampaign}
-  alt="Kwenda Taxi - Simplifiez vos trajets"
-  className="w-full h-full object-cover rounded-3xl"
-/>
-```
-
-## 6. Simplifier la Section Services
-
-### Modifier les services (lignes 49-74)
-
-Simplifier en 3 categories principales basees sur l'image :
+Remplacer `tel:+243XXXXXXXXX` par le vrai numero ITEC dans toutes les pages :
 
 ```tsx
-const services = [
-  {
-    name: "Transport",
-    description: "Taxi et VTC pour tous vos deplacements en ville",
-    icon: "🚗",
-    gradient: "from-primary/20 to-primary/5",
-  },
-  {
-    name: "Livraison",
-    description: "Service de livraison rapide par nos partenaires",
-    icon: "📦",
-    gradient: "from-green-500/20 to-green-500/5",
-  },
-  {
-    name: "Kwenda Pay",
-    description: "Wallet integre pour paiements securises",
-    icon: "💳",
-    gradient: "from-purple-500/20 to-purple-500/5",
-  },
-];
+<a href="tel:+243858040400">
 ```
 
 ## Resume des Modifications
 
-| Element | Modification |
+| Fichier | Modification |
 |---------|--------------|
-| Image Hero | Remplacer par `kwenda-campaign.png` |
-| Slogan | Ajouter "Simplifiez vos trajets, profitez de chaque instant." |
-| Prix | Ajouter "Trajets a partir de 2500 CDF" |
-| Telephone | Ajouter `#085 80 40 400` avec icone |
-| Hashtag | Ajouter `#TrajetSimplifie` |
-| Play Store | Lien vers `https://play.google.com/store/apps/details?id=cd.kwenda.app` |
-| Services | Simplifier a 3 categories principales |
-
-## Nouveaux Imports Necessaires
-
-```tsx
-import { Phone } from "lucide-react";
-import kwendaCampaign from "@/assets/kwenda-campaign.png";
-```
+| `GenieCivil.tsx` | Corriger bouton "Appeler" + numero |
+| `Electricite.tsx` | Corriger bouton "Appeler" + numero |
+| `Technologies.tsx` | Corriger bouton "Appeler" + numero |
+| `RessourcesHumaines.tsx` | Corriger bouton "Appeler" + numero |
 
 ## Resultat Attendu
 
-- Page Kwenda avec l'image officielle de la campagne
-- Slogan clair et impactant
-- Prix visible (2500 CDF)
-- Numero de telephone avec diese (#085 80 40 400)
-- Hashtag #TrajetSimplifie visible
-- Boutons de telechargement fonctionnels (Play Store avec lien reel)
-- Description simplifiee et comprehensible
+- Texte "Appeler maintenant" visible en blanc sur fond transparent
+- Bordure blanche semi-transparente autour du bouton
+- Numero de telephone reel (+243 858 040 400)
+- Effet hover fonctionnel avec fond blanc/10
 
