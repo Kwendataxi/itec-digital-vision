@@ -8,6 +8,7 @@ import {
   HeadphonesIcon, 
   Globe 
 } from "lucide-react";
+import directeurImg from "@/assets/itec-directeur.jpg";
 
 const useCountUp = (end: number, duration: number = 2, start: boolean = false) => {
   const [count, setCount] = useState(0);
@@ -139,7 +140,7 @@ const WhyChoose = () => {
           ))}
         </div>
 
-        {/* Stats Section */}
+        {/* Stats Section with Director Image */}
         <motion.div
           ref={statsRef}
           initial={{ opacity: 0, y: 40 }}
@@ -148,8 +149,15 @@ const WhyChoose = () => {
           transition={{ duration: 0.7 }}
           className="relative rounded-3xl overflow-hidden"
         >
-          {/* Animated gradient background with orange */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-light to-orange" />
+          {/* Background image with overlay */}
+          <div className="absolute inset-0">
+            <img 
+              src={directeurImg} 
+              alt="Direction ITEC" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary-light/90 to-orange/85" />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange/20 to-transparent" />
           
           {/* Decorative elements */}

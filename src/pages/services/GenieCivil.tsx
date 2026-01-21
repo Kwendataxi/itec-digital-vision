@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import constructionImg from "@/assets/construction.jpg";
+import constructionImg from "@/assets/itec-technicien-chantier.jpg";
 import {
   Breadcrumb,
   BreadcrumbItem,

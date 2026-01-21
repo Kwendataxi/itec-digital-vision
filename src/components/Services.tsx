@@ -3,9 +3,10 @@ import { Users, Hammer, Cpu, Zap, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import constructionImg from "@/assets/construction.jpg";
+import constructionImg from "@/assets/itec-bulldozer.jpg";
 import technologyImg from "@/assets/technology.jpg";
 import electricalImg from "@/assets/electrical.jpg";
+import rhTeamImg from "@/assets/itec-equipe-rh.jpg";
 
 // Sub-component for parallax image effect
 const ServiceImageWithParallax = ({ 
@@ -57,6 +58,7 @@ const Services = () => {
         "Prise en charge médicale",
         "Visas & permis de travail",
       ],
+      image: rhTeamImg,
       color: "from-blue-500 to-blue-600",
     },
     {

@@ -1,7 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { CheckCircle2, Target, Users, Award } from "lucide-react";
-import teamImage from "@/assets/team-itec.jpg";
+import teamImage from "@/assets/itec-equipe-terrain.jpg";
 
 const useCountUp = (end: number, duration: number = 2, start: boolean = false) => {
   const [count, setCount] = useState(0);
