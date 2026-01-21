@@ -83,19 +83,6 @@ const Hero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-20 pb-32 md:pb-20">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-8"
-          >
-            <div className="inline-flex items-center gap-2 bg-orange/20 backdrop-blur-sm border border-orange/30 px-6 py-3 rounded-full">
-              <div className="w-2 h-2 rounded-full bg-orange animate-pulse" />
-              <span className="text-white font-semibold text-sm tracking-wide">5+ ans d'excellence</span>
-            </div>
-          </motion.div>
-
           {/* Animated Title - Word by Word */}
           <div className="mb-8">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight soft-glow text-balance">

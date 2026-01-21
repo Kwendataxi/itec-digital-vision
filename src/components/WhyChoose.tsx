@@ -42,7 +42,7 @@ const WhyChoose = () => {
   const reasons = [
     {
       icon: Calendar,
-      title: "5+ ans d'expérience",
+      title: "Expérience confirmée",
       description: "Une expertise éprouvée dans tous nos domaines",
     },
     {

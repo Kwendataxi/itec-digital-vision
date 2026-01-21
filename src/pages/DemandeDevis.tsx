@@ -120,7 +120,7 @@ const benefits = [
   {
     icon: Award,
     title: "Expertise",
-    description: "5+ ans d'expérience terrain",
+    description: "Expertise terrain éprouvée",
   },
 ];
 
