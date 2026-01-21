@@ -151,9 +151,6 @@ const Footer = () => {
                 <div className="text-white/60 pt-2">
                   <p>Kinshasa, RD Congo</p>
                   <p>Lubumbashi, RD Congo</p>
-                  <a href="https://itec-sarlu.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm mt-1 block">
-                    itec-sarlu.com
-                  </a>
                 </div>
               </li>
             </ul>

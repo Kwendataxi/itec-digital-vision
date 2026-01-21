@@ -83,18 +83,20 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button className="ml-2 gradient-primary text-primary-foreground font-semibold shadow-elegant hover:shadow-xl transition-all rounded-xl px-6 relative overflow-hidden group">
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Sparkles className="w-4 h-4" />
-                    Contactez-nous
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-white/10"
-                    initial={{ scale: 0 }}
-                    whileHover={{ scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </Button>
+                <Link to="/demande-devis">
+                  <Button className="ml-2 gradient-primary text-primary-foreground font-semibold shadow-elegant hover:shadow-xl transition-all rounded-xl px-6 relative overflow-hidden group">
+                    <span className="relative z-10 flex items-center gap-2">
+                      <Sparkles className="w-4 h-4" />
+                      Demander un devis
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-white/10"
+                      initial={{ scale: 0 }}
+                      whileHover={{ scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </Button>
+                </Link>
               </motion.div>
             </div>
 
@@ -169,10 +171,12 @@ const Navbar = () => {
                   className="pt-4 flex flex-col gap-4"
                 >
                   <ThemeToggle className="self-center bg-white/10 hover:bg-white/20" />
-                  <Button className="w-full bg-white text-primary hover:bg-white/95 font-semibold py-6 text-lg rounded-2xl shadow-xl">
-                    <Sparkles className="w-5 h-5 mr-2" />
-                    Contactez-nous
-                  </Button>
+                  <Link to="/demande-devis" className="w-full">
+                    <Button className="w-full bg-white text-primary hover:bg-white/95 font-semibold py-6 text-lg rounded-2xl shadow-xl">
+                      <Sparkles className="w-5 h-5 mr-2" />
+                      Demander un devis
+                    </Button>
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>
