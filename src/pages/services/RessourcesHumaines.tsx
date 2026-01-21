@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -311,6 +312,7 @@ const RessourcesHumaines = () => {
       </section>
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
