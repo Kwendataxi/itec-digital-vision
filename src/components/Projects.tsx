@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Star, TrendingUp } from "lucide-react";
+import { ArrowRight, TrendingUp } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Link } from "react-router-dom";
-import kwendaMockup from "@/assets/kwenda-mockup.jpg";
+import kwendaCampaign from "@/assets/kwenda-campaign.png";
 
 const Projects = () => {
   const otherProjects = [
@@ -72,30 +72,16 @@ const Projects = () => {
             {/* Glow effect on hover */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <div className="relative">
-              <motion.div 
-                className="absolute top-4 right-4 z-10"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                <div className="gradient-primary text-primary-foreground px-5 py-2.5 rounded-full flex items-center gap-2 font-semibold shadow-lg">
-                  <Star className="w-4 h-4 fill-current" />
-                  Projet Majeur
-                </div>
-              </motion.div>
-            </div>
             <div className="grid lg:grid-cols-2 gap-0">
               <div className="relative h-64 lg:h-auto overflow-hidden">
                 <motion.img
-                  src={kwendaMockup}
-                  alt="Kwenda Taxi Application mobile de mobilité"
+                  src={kwendaCampaign}
+                  alt="Kwenda Taxi - Simplifiez vos trajets"
                   className="w-full h-full object-cover"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.6 }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent lg:hidden" />
               </div>
               <CardContent className="p-8 lg:p-12 flex flex-col justify-center relative">
@@ -109,10 +95,7 @@ const Projects = () => {
                     Kwenda Taxi
                   </h3>
                   <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                    ITEC assure la gestion, l'administration technique et
-                    opérationnelle de <strong className="text-foreground">Kwenda Taxi</strong>, une solution
-                    digitale complète de mobilité, taxi et livraison déployée en
-                    République Démocratique du Congo.
+                    Simplifiez vos trajets, profitez de chaque instant. Plateforme de transport et livraison en RD Congo.
                   </p>
                   <div className="flex flex-wrap gap-2 mb-8">
                     {["Application Mobile", "Gestion Opérationnelle", "Tech Management"].map((tag) => (

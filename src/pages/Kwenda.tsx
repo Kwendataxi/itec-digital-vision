@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Smartphone, DollarSign, Shield, Zap, Users, MapPin, Star, CheckCircle2, Phone } from "lucide-react";
+import { ArrowLeft, Smartphone, DollarSign, Shield, MapPin, CheckCircle2, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -16,33 +16,23 @@ const Kwenda = () => {
   const features = [
     {
       icon: Smartphone,
-      title: "Application Mobile Intuitive",
-      description: "Interface moderne et facile d'utilisation pour tous",
+      title: "Application Mobile",
+      description: "Interface intuitive et facile d'utilisation",
     },
     {
       icon: MapPin,
-      title: "Géolocalisation en Temps Réel",
-      description: "Suivi précis de votre course à chaque instant",
-    },
-    {
-      icon: Zap,
-      title: "Service Flash",
-      description: "Réservation instantanée pour vos déplacements urgents",
+      title: "Géolocalisation",
+      description: "Suivi de votre course en temps réel",
     },
     {
       icon: DollarSign,
-      title: "Kwenda Pay - Wallet Intégré",
-      description: "Paiement sécurisé et gestion de votre portefeuille",
+      title: "Kwenda Pay",
+      description: "Wallet intégré pour paiements sécurisés",
     },
     {
       icon: Shield,
-      title: "Sécurité Maximale",
+      title: "Sécurité",
       description: "Chauffeurs vérifiés et courses sécurisées",
-    },
-    {
-      icon: Users,
-      title: "Multiple Services",
-      description: "Taxi, livraison et options premium disponibles",
     },
   ];
 
@@ -77,14 +67,9 @@ const Kwenda = () => {
           {/* Background Effects */}
           <div className="absolute inset-0 mesh-gradient opacity-60" />
           <motion.div
-            className="absolute top-20 right-10 w-96 h-96 rounded-full bg-primary/10 blur-3xl"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl"
+            animate={{ opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 8, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute bottom-20 left-10 w-72 h-72 rounded-full bg-accent/10 blur-3xl"
-            animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.2, 0.4] }}
-            transition={{ duration: 10, repeat: Infinity }}
           />
           
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -101,16 +86,6 @@ const Kwenda = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6"
-                >
-                  <Star className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">Projet Phare ITEC</span>
-                </motion.div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 tracking-tight">
                   Kwenda <span className="text-gradient">Taxi</span>
@@ -226,7 +201,7 @@ const Kwenda = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -274,7 +249,7 @@ const Kwenda = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {services.map((service, index) => (
                 <motion.div
                   key={service.name}
