@@ -34,15 +34,15 @@ const WhyChoose = () => {
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, margin: "-100px" });
   
-  const years = useCountUp(15, 2, isStatsInView);
-  const projects = useCountUp(200, 2.5, isStatsInView);
+  const years = useCountUp(5, 2, isStatsInView);
+  const projects = useCountUp(100, 2.5, isStatsInView);
   const clients = useCountUp(50, 2, isStatsInView);
-  const experts = useCountUp(100, 2.5, isStatsInView);
+  const experts = useCountUp(30, 2.5, isStatsInView);
 
   const reasons = [
     {
       icon: Calendar,
-      title: "15+ ans d'expérience",
+      title: "5+ ans d'expérience",
       description: "Une expertise éprouvée dans tous nos domaines",
     },
     {

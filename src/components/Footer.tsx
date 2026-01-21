@@ -127,10 +127,10 @@ const Footer = () => {
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <a
-                  href="mailto:contact@itec-rdc.com"
+                  href="mailto:infos@itec-sarlu.com"
                   className="text-white/60 hover:text-primary transition-colors pt-2"
                 >
-                  contact@itec-rdc.com
+                  infos@itec-sarlu.com
                 </a>
               </li>
               <li className="flex items-start gap-3 group">
@@ -148,9 +148,13 @@ const Footer = () => {
                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
-                <span className="text-white/60 pt-2">
-                  Kinshasa, RD Congo
-                </span>
+                <div className="text-white/60 pt-2">
+                  <p>Kinshasa, RD Congo</p>
+                  <p>Lubumbashi, RD Congo</p>
+                  <a href="https://itec-sarlu.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm mt-1 block">
+                    itec-sarlu.com
+                  </a>
+                </div>
               </li>
             </ul>
           </motion.div>

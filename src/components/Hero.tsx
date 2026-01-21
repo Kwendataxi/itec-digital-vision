@@ -1,24 +1,38 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "./ui/button";
 import heroImage from "@/assets/hero-itec.jpg";
+import { useRef } from "react";
 
 const Hero = () => {
   const words = ["Expertise", "–", "Innovation", "–", "Performance"];
+  const sectionRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.85, 0.95]);
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with Parallax */}
       <div className="absolute inset-0 z-0">
         <motion.div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          style={{ 
+            backgroundImage: `url(${heroImage})`,
+            y: backgroundY,
+            scale: 1.1
+          }}
         />
         {/* Premium gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/85 to-primary-light/80" />
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/85 to-primary-light/80"
+          style={{ opacity: overlayOpacity }}
+        />
         
         {/* Mesh gradient effects */}
         <div className="absolute inset-0 mesh-gradient opacity-60" />
