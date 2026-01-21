@@ -51,8 +51,8 @@ const Navbar = () => {
                 <img 
                   src={logoItec} 
                   alt="ITEC Logo" 
-                  className={`transition-all duration-300 object-contain ${
-                    isScrolled ? "h-10 md:h-12" : "h-12 md:h-14"
+                  className={`transition-all duration-300 object-contain drop-shadow-md ${
+                    isScrolled ? "h-12 md:h-14" : "h-14 md:h-16 lg:h-20"
                   }`}
                 />
               </motion.div>
@@ -152,7 +152,7 @@ const Navbar = () => {
               <motion.img
                 src={logoItec}
                 alt="ITEC"
-                className="h-16 mb-8 object-contain"
+                className="h-20 md:h-24 mb-8 object-contain drop-shadow-lg"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
