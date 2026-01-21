@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Facebook, Linkedin, Twitter, Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import logoItec from "@/assets/logo-itec.png";
 
 const Footer = () => {
   const quickLinks = [
@@ -9,6 +10,7 @@ const Footer = () => {
     { name: "Services", path: "/#services" },
     { name: "Projets", path: "/#projects" },
     { name: "Contact", path: "/#contact" },
+    { name: "Demander un devis", path: "/demande-devis" },
   ];
 
   const services = [
@@ -26,26 +28,29 @@ const Footer = () => {
 
   return (
     <footer className="bg-anthracite text-white relative overflow-hidden">
-      {/* Top gradient line */}
-      <div className="h-1 w-full animated-gradient" />
+      {/* Top gradient line with orange accent */}
+      <div className="h-1 w-full bg-gradient-to-r from-primary via-orange to-primary" />
       
       {/* Background decoration */}
       <div className="absolute inset-0 mesh-gradient opacity-5 pointer-events-none" />
       
       <div className="container mx-auto px-4 lg:px-8 py-16 md:py-20 relative">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Company Info */}
+          {/* Company Info with Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center shadow-lg">
-                <span className="text-primary-foreground font-black text-xl">I</span>
-              </div>
-              <span className="text-2xl font-bold">ITEC</span>
+            <div className="mb-6">
+              <motion.img
+                src={logoItec}
+                alt="ITEC Logo"
+                className="h-14 w-auto object-contain brightness-0 invert"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              />
             </div>
             <p className="text-white/60 mb-8 leading-relaxed">
               Expertise, Innovation et Performance pour tous vos projets
@@ -57,14 +62,14 @@ const Footer = () => {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-11 h-11 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all duration-300 border border-white/10 hover:border-primary/50 group"
+                  className="w-11 h-11 rounded-xl bg-white/5 hover:bg-orange/20 flex items-center justify-center transition-all duration-300 border border-white/10 hover:border-orange/50 group"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <social.icon className="w-5 h-5 text-white/70 group-hover:text-primary transition-colors" />
+                  <social.icon className="w-5 h-5 text-white/70 group-hover:text-orange transition-colors" />
                 </motion.a>
               ))}
             </div>
@@ -83,7 +88,7 @@ const Footer = () => {
                 <li key={link.path}>
                   <a
                     href={link.path}
-                    className="text-white/60 hover:text-primary transition-colors duration-300 flex items-center gap-1 group"
+                    className="text-white/60 hover:text-orange transition-colors duration-300 flex items-center gap-1 group"
                   >
                     {link.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
@@ -105,7 +110,7 @@ const Footer = () => {
               {services.map((service) => (
                 <li key={service}>
                   <span className="text-white/60 flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange" />
                     {service}
                   </span>
                 </li>
@@ -123,30 +128,30 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-6">Contact</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 group">
-                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <Mail className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-orange/20 transition-colors">
+                  <Mail className="w-5 h-5 text-orange" />
                 </div>
                 <a
                   href="mailto:infos@itec-sarlu.com"
-                  className="text-white/60 hover:text-primary transition-colors pt-2"
+                  className="text-white/60 hover:text-orange transition-colors pt-2"
                 >
                   infos@itec-sarlu.com
                 </a>
               </li>
               <li className="flex items-start gap-3 group">
-                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <Phone className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-orange/20 transition-colors">
+                  <Phone className="w-5 h-5 text-orange" />
                 </div>
                 <a
                   href="tel:+243XXXXXXXXX"
-                  className="text-white/60 hover:text-primary transition-colors pt-2"
+                  className="text-white/60 hover:text-orange transition-colors pt-2"
                 >
                   +243 XXX XXX XXX
                 </a>
               </li>
               <li className="flex items-start gap-3 group">
-                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <MapPin className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-orange/20 transition-colors">
+                  <MapPin className="w-5 h-5 text-orange" />
                 </div>
                 <div className="text-white/60 pt-2">
                   <p>Kinshasa, RD Congo</p>
@@ -164,10 +169,10 @@ const Footer = () => {
               © {new Date().getFullYear()} ITEC. Tous droits réservés.
             </p>
             <div className="flex gap-6 text-sm">
-              <Link to="#" className="text-white/50 hover:text-primary transition-colors">
+              <Link to="#" className="text-white/50 hover:text-orange transition-colors">
                 Mentions légales
               </Link>
-              <Link to="#" className="text-white/50 hover:text-primary transition-colors">
+              <Link to="#" className="text-white/50 hover:text-orange transition-colors">
                 Politique de confidentialité
               </Link>
             </div>

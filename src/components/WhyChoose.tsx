@@ -148,9 +148,9 @@ const WhyChoose = () => {
           transition={{ duration: 0.7 }}
           className="relative rounded-3xl overflow-hidden"
         >
-          {/* Animated gradient background */}
-          <div className="absolute inset-0 animated-gradient" />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary-light/90" />
+          {/* Animated gradient background with orange */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-light to-orange" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange/20 to-transparent" />
           
           {/* Decorative elements */}
           <div className="absolute inset-0 overflow-hidden">
@@ -169,10 +169,10 @@ const WhyChoose = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-2">
-                    {stat.number}{stat.suffix}
+                  <div className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-2 drop-shadow-lg">
+                    <span className="text-orange-light">{stat.number}</span>{stat.suffix}
                   </div>
-                  <div className="text-white/80 font-medium text-sm md:text-base">
+                  <div className="text-white/90 font-medium text-sm md:text-base">
                     {stat.label}
                   </div>
                 </motion.div>
