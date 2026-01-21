@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "./pages/Index";
 import Kwenda from "./pages/Kwenda";
 import NotFound from "./pages/NotFound";
+import { RessourcesHumaines, GenieCivil, Technologies, Electricite } from "./pages/services";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/kwenda" element={<Kwenda />} />
+            <Route path="/services/rh" element={<RessourcesHumaines />} />
+            <Route path="/services/genie-civil" element={<GenieCivil />} />
+            <Route path="/services/technologies" element={<Technologies />} />
+            <Route path="/services/electricite" element={<Electricite />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

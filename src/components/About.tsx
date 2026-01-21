@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { CheckCircle2, Target, Users, Award } from "lucide-react";
 import teamImage from "@/assets/team-itec.jpg";
@@ -26,10 +26,18 @@ const useCountUp = (end: number, duration: number = 2, start: boolean = false) =
 
 const About = () => {
   const ref = useRef(null);
+  const imageRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   
-  const yearsCount = useCountUp(15, 2, isInView);
-  const projectsCount = useCountUp(200, 2.5, isInView);
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  
+  const yearsCount = useCountUp(5, 2, isInView);
+  const projectsCount = useCountUp(100, 2.5, isInView);
 
   const values = [
     {
@@ -86,12 +94,14 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="relative"
+            ref={imageRef}
           >
             <div className="relative rounded-3xl overflow-hidden shadow-elegant">
-              <img
+              <motion.img
                 src={teamImage}
                 alt="Équipe ITEC professionnelle"
-                className="w-full h-full object-cover"
+                className="w-full h-[120%] object-cover"
+                style={{ y: imageY }}
               />
               {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
@@ -144,7 +154,7 @@ const About = () => {
                   <CheckCircle2 className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">15+ ans d'expertise</h4>
+                  <h4 className="font-semibold text-foreground mb-1">5+ ans d'expertise</h4>
                   <p className="text-sm text-muted-foreground">
                     Une expérience solide dans tous nos domaines d'intervention
                   </p>

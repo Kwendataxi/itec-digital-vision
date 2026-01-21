@@ -36,8 +36,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "contact@itec-rdc.com",
-      href: "mailto:contact@itec-rdc.com",
+      value: "infos@itec-sarlu.com",
+      href: "mailto:infos@itec-sarlu.com",
     },
     {
       icon: Phone,
@@ -47,8 +47,8 @@ const Contact = () => {
     },
     {
       icon: MapPin,
-      label: "Adresse",
-      value: "Kinshasa, République Démocratique du Congo",
+      label: "Adresses",
+      value: "Kinshasa & Lubumbashi, RD Congo",
       href: null,
     },
   ];
@@ -252,7 +252,8 @@ const Contact = () => {
                     </motion.div>
                   </div>
                   <div className="absolute bottom-4 left-4 right-4 glass rounded-xl p-4">
-                    <p className="text-white font-medium text-sm">ITEC - Kinshasa, RDC</p>
+                    <p className="text-white font-medium text-sm">ITEC - Kinshasa & Lubumbashi, RDC</p>
+                    <p className="text-white/70 text-xs mt-1">itec-sarlu.com</p>
                   </div>
                 </div>
               </Card>

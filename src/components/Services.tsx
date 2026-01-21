@@ -1,16 +1,54 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Users, Hammer, Cpu, Zap, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
+import { Link } from "react-router-dom";
+import { useRef } from "react";
 import constructionImg from "@/assets/construction.jpg";
 import technologyImg from "@/assets/technology.jpg";
 import electricalImg from "@/assets/electrical.jpg";
 
+// Sub-component for parallax image effect
+const ServiceImageWithParallax = ({ 
+  image, 
+  title, 
+  color, 
+  scrollYProgress 
+}: { 
+  image: string; 
+  title: string; 
+  color: string;
+  scrollYProgress: any;
+}) => {
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+  
+  return (
+    <div className="relative h-48 md:h-56 overflow-hidden">
+      <motion.img
+        src={image}
+        alt={title}
+        className="w-full h-[120%] object-cover"
+        style={{ y: imageY }}
+      />
+      <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-50 group-hover:opacity-40 transition-opacity duration-500`} />
+      <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+    </div>
+  );
+};
+
 const Services = () => {
+  const sectionRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
   const services = [
     {
       icon: Users,
       title: "Gestion des Ressources Humaines",
       description: "Solutions complètes pour vos besoins en personnel",
+      slug: "rh",
       features: [
         "Recrutement et placement de personnel",
         "Gestion de la paie et administration",
@@ -25,6 +63,7 @@ const Services = () => {
       icon: Hammer,
       title: "Génie Civil & Construction",
       description: "Expertise en construction et infrastructures",
+      slug: "genie-civil",
       features: [
         "Construction de routes et bâtiments",
         "Ponts et ouvrages d'art",
@@ -39,6 +78,7 @@ const Services = () => {
       icon: Cpu,
       title: "Nouvelles Technologies & Topographie",
       description: "Solutions technologiques avancées",
+      slug: "technologies",
       features: [
         "Cubage des remblais",
         "Levés topographiques",
@@ -54,6 +94,7 @@ const Services = () => {
       icon: Zap,
       title: "Électricité & Fournitures",
       description: "Solutions énergétiques complètes",
+      slug: "electricite",
       features: [
         "Production, transport, distribution",
         "Installation électrique",
@@ -67,7 +108,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 md:py-32 bg-background relative overflow-hidden">
+    <section id="services" ref={sectionRef} className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 mesh-gradient opacity-20 pointer-events-none" />
       
@@ -107,17 +148,12 @@ const Services = () => {
             >
               <Card className="group hover:shadow-elegant transition-all duration-500 overflow-hidden h-full border-border/50 hover:border-primary/30 gradient-border bg-card">
                 {service.image && (
-                  <div className="relative h-48 md:h-56 overflow-hidden">
-                    <motion.img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-50 group-hover:opacity-40 transition-opacity duration-500`} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                  </div>
+                  <ServiceImageWithParallax 
+                    image={service.image} 
+                    title={service.title} 
+                    color={service.color}
+                    scrollYProgress={scrollYProgress}
+                  />
                 )}
                 <CardContent className="p-6 md:p-8">
                   <motion.div 
@@ -156,10 +192,13 @@ const Services = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
                   >
-                    <button className="text-primary font-semibold text-sm flex items-center gap-2 group/btn hover:gap-3 transition-all">
+                    <Link 
+                      to={`/services/${service.slug}`}
+                      className="text-primary font-semibold text-sm flex items-center gap-2 group/btn hover:gap-3 transition-all"
+                    >
                       En savoir plus
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                    </Link>
                   </motion.div>
                 </CardContent>
               </Card>
