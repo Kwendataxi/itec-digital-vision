@@ -1,163 +1,132 @@
 
+# Plan de Mise à Jour - Suppression du lien site + Formulaire de Devis
 
-# Plan de Mise à Jour Complète - ITEC
+## 1. Suppression du lien "itec-sarlu.com"
 
-## 1. Correction des Informations de l'Entreprise
+### Fichiers à modifier :
 
-### Fichiers concernés et modifications :
+**`src/components/Contact.tsx`** (ligne 256)
+- Supprimer la ligne `<p className="text-white/70 text-xs mt-1">itec-sarlu.com</p>` dans le placeholder de carte
 
-| Fichier | Correction |
-|---------|------------|
-| `src/components/About.tsx` | 15+ → **5+** ans, 200+ → **100+** projets |
-| `src/components/WhyChoose.tsx` | 15+ → **5+** ans, 200+ → **100+** projets, 100+ → **30+** experts |
-| `src/components/Contact.tsx` | Email: **infos@itec-sarlu.com**, Adresses: **Kinshasa & Lubumbashi** |
-| `src/components/Footer.tsx` | Email: **infos@itec-sarlu.com**, Adresses: **Kinshasa & Lubumbashi** |
-
----
-
-## 2. Effet Parallaxe sur les Images de Fond
-
-### Approche technique :
-- Utiliser `framer-motion` avec `useScroll()` et `useTransform()` pour créer un effet parallaxe fluide et performant
-- Appliquer sur les images de fond des sections : Hero, Services (images des cartes), About (image équipe)
-
-### Sections à modifier :
-
-**Hero Section** (`Hero.tsx`)
-- L'image de fond bougera légèrement plus lentement que le scroll
-- Transformation: `translateY` de 0 à 30% selon la position du scroll
-
-**About Section** (`About.tsx`)
-- Image de l'équipe avec effet parallaxe subtil (translateY inverse)
-- Mouvement de -20% à +10% sur le scroll
-
-**Services Section** (`Services.tsx`)
-- Images des cartes services avec parallaxe léger au scroll dans la section
-- Scale et translateY subtils
-
----
-
-## 3. Pages Dédiées pour Chaque Service
-
-### Nouvelles pages à créer :
-
-| Page | Route | Service |
-|------|-------|---------|
-| `src/pages/services/RessourcesHumaines.tsx` | `/services/rh` | Gestion RH |
-| `src/pages/services/GenieCivil.tsx` | `/services/genie-civil` | Construction |
-| `src/pages/services/Technologies.tsx` | `/services/technologies` | Tech & Topographie |
-| `src/pages/services/Electricite.tsx` | `/services/electricite` | Électricité |
-
-### Structure de chaque page service :
-
-1. **Hero Section**
-   - Titre du service avec animation
-   - Description courte
-   - Image de fond avec parallaxe
-   - Breadcrumb (Accueil > Services > [Nom du service])
-
-2. **Section Présentation**
-   - Description détaillée du service
-   - Points clés avec icônes animées
-   - Image ou illustration
-
-3. **Section Prestations Détaillées**
-   - Liste des prestations en cartes glassmorphism
-   - Animations d'entrée staggered
-   - Icônes pour chaque prestation
-
-4. **Section Processus/Méthodologie**
-   - Étapes de travail en timeline
-   - Animation de progression au scroll
-
-5. **Section CTA**
-   - Appel à l'action pour demander un devis
-   - Bouton contact avec effet glow
-
-### Fichiers à créer :
-```
-src/pages/services/
-├── RessourcesHumaines.tsx
-├── GenieCivil.tsx
-├── Technologies.tsx
-├── Electricite.tsx
-└── index.ts (exports)
-```
-
-### Modifier `App.tsx` :
-- Ajouter les nouvelles routes pour chaque service
-
-### Modifier `Services.tsx` :
-- Les boutons "En savoir plus" redirigeront vers les pages dédiées avec `<Link to="/services/...">`
-
----
-
-## 4. Modifications par Fichier
-
-### `src/components/Hero.tsx`
-- Ajouter `useScroll()` et `useTransform()` pour effet parallaxe sur l'image de fond
-- L'image se déplace à 50% de la vitesse du scroll
-
-### `src/components/About.tsx`
-- Corriger : `yearsCount = useCountUp(5, ...)` 
-- Corriger : `projectsCount = useCountUp(100, ...)`
-- Corriger texte "15+ ans" → "5+ ans"
-- Ajouter parallaxe sur l'image de l'équipe
-
-### `src/components/WhyChoose.tsx`
-- Corriger les stats : 5+ ans, 100+ projets, 50+ clients, 30+ experts
-- Ajouter parallaxe sur le fond de la section stats
-
-### `src/components/Contact.tsx`
-- Email : `infos@itec-sarlu.com`
-- Téléphone : garder le format actuel (à confirmer)
-- Adresses : `Kinshasa & Lubumbashi, RD Congo`
-- Ajouter les deux villes dans l'affichage
-
-### `src/components/Footer.tsx`
-- Mettre à jour l'email et les adresses
-- Ajouter lien vers le site : `itec-sarlu.com`
-- Afficher les deux bureaux (Kinshasa & Lubumbashi)
-
-### `src/components/Services.tsx`
-- Ajouter un attribut `slug` à chaque service pour les liens
-- Transformer les boutons "En savoir plus" en `<Link>` vers les pages dédiées
-- Ajouter effet parallaxe sur les images des cartes
-
-### `src/App.tsx`
-- Ajouter les imports des pages services
-- Ajouter les routes `/services/rh`, `/services/genie-civil`, `/services/technologies`, `/services/electricite`
-
----
-
-## 5. Composant Parallaxe Réutilisable
-
-### Créer `src/components/ParallaxImage.tsx`
-```typescript
-// Composant réutilisable pour effet parallaxe
-// Props: src, alt, speed (0.1 à 0.5), className
-// Utilise useScroll et useTransform de framer-motion
+**`src/components/Footer.tsx`** (lignes 154-156)
+- Supprimer le lien :
+```tsx
+<a href="https://itec-sarlu.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm mt-1 block">
+  itec-sarlu.com
+</a>
 ```
 
 ---
 
-## 6. Résumé des Fichiers
+## 2. Formulaire de Demande de Devis Detaille
 
-| Action | Fichiers |
-|--------|----------|
-| **Modifier** | `Hero.tsx`, `About.tsx`, `WhyChoose.tsx`, `Contact.tsx`, `Footer.tsx`, `Services.tsx`, `App.tsx` |
-| **Créer** | `ParallaxImage.tsx`, `services/RessourcesHumaines.tsx`, `services/GenieCivil.tsx`, `services/Technologies.tsx`, `services/Electricite.tsx` |
+### Approche :
+Creer une nouvelle page dediee `/demande-devis` avec un formulaire complet et professionnel.
+
+### Nouvelle page : `src/pages/DemandeDevis.tsx`
+
+**Structure du formulaire :**
+
+| Champ | Type | Details |
+|-------|------|---------|
+| Nom complet | Input text | Obligatoire |
+| Email | Input email | Obligatoire, validation |
+| Telephone | Input tel | Optionnel |
+| Entreprise | Input text | Optionnel |
+| **Service souhaite** | Select dropdown | RH, Genie Civil, Technologies, Electricite |
+| **Budget estime** | Select dropdown | Moins de 5 000$, 5 000$ - 15 000$, 15 000$ - 50 000$, Plus de 50 000$, A definir |
+| Description du projet | Textarea | Obligatoire, min 50 caracteres |
+| **Telechargement fichiers** | Input file | Multiple, PDF/DOC/IMG, max 10MB par fichier |
+| Date souhaitee de debut | Date picker (optionnel) | Calendrier |
+
+### Design de la page :
+
+1. **Hero compact**
+   - Titre "Demande de Devis" avec animation
+   - Sous-titre explicatif
+   - Breadcrumb (Accueil > Demande de Devis)
+   - Mesh gradient en fond
+
+2. **Section Formulaire**
+   - Carte glassmorphism centree
+   - Champs organises en grille responsive
+   - Labels clairs avec indicateurs obligatoires (*)
+   - Zone de drag & drop pour fichiers
+   - Bouton submit avec animation de chargement
+
+3. **Sidebar Informations**
+   - Pourquoi nous choisir (3 points cles)
+   - Contact direct (email, telephone)
+   - Delai de reponse (24-48h)
+
+### Fichiers a modifier/creer :
+
+| Fichier | Action |
+|---------|--------|
+| `src/pages/DemandeDevis.tsx` | **CREER** - Page complete du formulaire |
+| `src/App.tsx` | Ajouter route `/demande-devis` |
+| `src/components/Contact.tsx` | Supprimer lien site + ajouter bouton vers devis |
+| `src/components/Footer.tsx` | Supprimer lien site + ajouter lien devis |
+| `src/components/Navbar.tsx` | Modifier CTA "Nous contacter" vers "Demander un devis" |
+
+### Composants UI utilises :
+
+- `Select` (existant) - pour service et budget
+- `Input` (existant) - pour les champs texte
+- `Textarea` (existant) - pour la description
+- `Button` (existant) - pour le submit
+- `Card` (existant) - pour le conteneur
+- `Calendar` (existant) - pour la date optionnelle
+
+### Gestion des fichiers uploades :
+
+```tsx
+// Zone de drop avec apercu des fichiers
+const [files, setFiles] = useState<File[]>([]);
+
+// Validation : max 5 fichiers, max 10MB chacun
+// Types acceptes : .pdf, .doc, .docx, .jpg, .png, .zip
+```
+
+### Validation du formulaire :
+
+- Utilisation de **Zod** + **react-hook-form** pour validation robuste
+- Messages d'erreur en francais
+- Validation temps reel des champs
+
+### Animation et UX :
+
+- Animation d'entree staggered sur les champs
+- Focus ring avec gradient
+- Bouton submit avec loader anime
+- Toast de confirmation apres envoi
+- Redirection vers page d'accueil apres succes
 
 ---
 
-## 7. Design des Pages Services
+## 3. Resume des Modifications
 
-Chaque page service aura :
-- **Mesh gradient** en arrière-plan
-- **Glassmorphism** sur les cartes
-- **Compteurs animés** (si statistiques)
-- **Parallaxe** sur l'image hero
-- **Animations stagger** sur les listes
-- **Bouton CTA** avec effet glow
-- **Navigation retour** avec breadcrumb animé
+```text
+SUPPRIMER :
+- Contact.tsx ligne 256 : texte "itec-sarlu.com"
+- Footer.tsx lignes 154-156 : lien "itec-sarlu.com"
 
+CREER :
+- src/pages/DemandeDevis.tsx : Formulaire complet
+
+MODIFIER :
+- App.tsx : Ajouter route /demande-devis
+- Navbar.tsx : CTA vers demande de devis
+- Contact.tsx : Bouton vers demande de devis
+- Footer.tsx : Lien vers demande de devis
+```
+
+---
+
+## 4. Resultat Attendu
+
+- Plus de lien "itec-sarlu.com" visible sur le site
+- Nouvelle page professionnelle `/demande-devis`
+- Formulaire complet avec selection de service, budget et upload de fichiers
+- Experience utilisateur fluide avec animations premium
+- Validation robuste et feedback utilisateur clair
